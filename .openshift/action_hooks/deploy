@@ -29,5 +29,8 @@ cd $OPENSHFIT_REPO_DIR
 rm -fr target
 
 $M2/mvn --version
-$m2/mvn -s settings.xml clean install
+$m2/mvn -s settings.xml clean package
+
+nohub java -Xms384m -Xmx412m -jar target/*.jar --server.port=${OPENSHIFT_DIY_PORT} --server.address=${OPENSHIFT_DIY_IP} --spring.profiles.active=openshift &
+
 
